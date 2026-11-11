@@ -1,17 +1,52 @@
-# Screenshots
+<p align="center">
+  <img src="../images/screenshots-banner.svg" alt="Screenshot gallery" width="100%">
+</p>
 
-Save screenshots from **your own workspace** here as you build, using these file names, then link them from `docs/RESULTS.md`.
-Crop out workspace URLs, tokens and email addresses before committing.
+<p align="center">
+  <a href="../../README.md"><b>← Back to project</b></a> ·
+  <a href="../RESULTS.md"><b>Results</b></a>
+</p>
 
-| # | File name | What to capture |
-| --- | --- | --- |
-| 1 | `01_catalog_explorer.png` | Catalog Explorer showing the `fraud` catalog with raw/bronze/silver/gold/ml/gov schemas |
-| 2 | `02_pipeline_graph.png` | Pipeline graph bronze → silver → gold with row counts |
-| 3 | `03_data_quality.png` | Pipeline data-quality tab showing dropped records per expectation |
-| 4 | `04_column_mask.png` | Masked `card_id` values in `analyst_transactions` |
-| 5 | `05_lineage.png` | Unity Catalog lineage from bronze to gold |
-| 6 | `06_skew_before.png` | Spark UI stage page with one long task |
-| 7 | `07_skew_after.png` | Same stage with even task times after the fix |
-| 8 | `08_mlflow_runs.png` | MLflow experiment with runs compared on average precision |
-| 9 | `09_registered_model.png` | `fraud.ml.card_fraud_model` with the `@champion` alias |
-| 10 | `10_github_actions.png` | Green CI/CD run: tests → bundle validate → deploy |
+> [!NOTE]
+> Screenshots are taken from my own Databricks workspace. Workspace URLs, tokens and email addresses are cropped out.
+> Images appear here as each milestone is completed.
+
+## 🗂 Data &amp; governance
+
+| Catalog explorer | Lineage |
+| :-: | :-: |
+| `01_catalog_explorer.png` ⏳ | `05_lineage.png` ⏳ |
+| **Pipeline graph** | **Data-quality results** |
+| `02_pipeline_graph.png` ⏳ | `03_data_quality.png` ⏳ |
+| **Card-ID masking** | |
+| `04_column_mask.png` ⏳ | |
+
+## ⚡ Performance
+
+| Before: skewed stage | After: balanced tasks |
+| :-: | :-: |
+| `06_skew_before.png` ⏳ | `07_skew_after.png` ⏳ |
+
+## 🤖 Machine learning
+
+| MLflow runs | Registered model |
+| :-: | :-: |
+| `08_mlflow_runs.png` ⏳ | `09_registered_model.png` ⏳ |
+
+## 🚀 Deployment
+
+| CI/CD run |
+| :-: |
+| `10_github_actions.png` ⏳ |
+
+---
+
+<details>
+<summary><b>How to add a screenshot</b></summary>
+<br>
+
+1. Save the image in this folder using the file name shown above.
+2. Replace the file name in the table with `<img src="01_catalog_explorer.png" width="100%">`.
+3. Replace ⏳ with nothing, then commit.
+
+</details>
