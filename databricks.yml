@@ -1,0 +1,46 @@
+# Databricks Asset Bundle: deploys the pipeline and the training job.
+# Validate:  databricks bundle validate -t dev
+# Deploy:    databricks bundle deploy -t dev
+# Run:       databricks bundle run fraud_pipeline -t dev
+
+bundle:
+  name: fraud-lakehouse
+
+variables:
+  catalog:
+    description: Unity Catalog catalog to use (use "workspace" on Free Edition if you cannot create catalogs)
+    default: fraud
+
+resources:
+  pipelines:
+    fraud_pipeline:
+      name: fraud-medallion-${bundle.target}
+      catalog: ${var.catalog}
+      schema: silver
+      serverless: true
+      continuous: false
+      configuration:
+        landing_path: /Volumes/${var.catalog}/raw/landing/transactions
+      libraries:
+        - file:
+            path: ./src/pipeline/fraud_pipeline.py
+
+  jobs:
+    train_fraud_model:
+      name: train-fraud-model-${bundle.target}
+      tasks:
+        - task_key: refresh_pipeline
+          pipeline_task:
+            pipeline_id: ${resources.pipelines.fraud_pipeline.id}
+        - task_key: train
+          depends_on:
+            - task_key: refresh_pipeline
+          notebook_task:
+            notebook_path: ./notebooks/04_train_fraud_model.py
+
+targets:
+  dev:
+    mode: development
+    default: true
+  prod:
+    mode: production
